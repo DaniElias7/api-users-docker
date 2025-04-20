@@ -12,19 +12,21 @@ class UserController {
       const newUser = await UserService.createUser(req.body);
       res.status(201).json(newUser);
     } catch (error) {
-      res.status(400).json({ message: error.message });
+      res.status(409).json({ message: error.message });
     }
   }
 
   async getAllUsers(req, res) {
     try {
       const loggedInUser = req.user;
+      console.log('Logged in user:', loggedInUser); // Debugging line
 
-      if (!loggedInUser || loggedInUser.type !== 'admin') {
+      if (!loggedInUser) {
         return res.status(403).json({ message: 'Only admins can list all users.' });
       }
 
       const users = await UserService.getAllUsers();
+
       res.json(users);
     } catch (error) {
       res.status(500).json({ message: error.message });
@@ -74,8 +76,7 @@ class UserController {
         if (updateData.type !== undefined || updateData.email !== undefined) {
           return res.status(403).json({ message: 'Regular users cannot update their type or email.' });
         }
-      } else if (loggedInUser.type !== 'admin') {
-        // This case should ideally not be reached if authentication is proper
+      } else if (loggedInUser.type !== 'admin' ) {
         return res.status(403).json({ message: 'Unauthorized action.' });
       }
 

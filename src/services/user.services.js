@@ -4,7 +4,7 @@ class UserService {
   async createUser(userData) {
     const existingUser = await UserModel.getUserByEmail(userData.email);
     if (existingUser) {
-      throw new Error('El correo electrónico ya existe');
+      throw new Error('O e-mail já está cadastrado.');
     }
     return UserModel.createUser(userData);
   }
