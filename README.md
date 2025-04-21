@@ -16,8 +16,6 @@ The system has two main user types:
 - **Regular Users**  
   Have limited access with permissions to:
   - View their own account information
-  - Update their personal details (name, password)
-  - Cannot modify sensitive fields (user type, email)
   - Cannot access other users' accounts
 
 ## Authentication Flow
@@ -37,6 +35,3 @@ The system has two main user types:
   - Identifies the user
   - Determines permission levels
   - Is required for all protected operations
-    - Viewing user information
-    - Updating account details
-    - Admin-specific functions (for administrators)
