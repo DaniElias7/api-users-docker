@@ -31,7 +31,4 @@ The system has two main user types:
 
 ## Security Model
 
-- The token acts as an access key that:
-  - Identifies the user
-  - Determines permission levels
-  - Is required for all protected operations
+- Users must be authenticated to access to all protected routes
